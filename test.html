@@ -1,0 +1,475 @@
+<!DOCTYPE html>  
+<html lang="uz">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Test</title>  
+    <style>
+           body {  
+            font-family: 'Times New Roman', serif sans-serif;  
+        }  
+        .question {  
+            margin: 60px 0;
+            color: black;  
+        }  
+        .answer {  
+            display: block;  
+            margin: 1px 0;
+            color: black;  
+        }  
+    </style>
+</head>  
+<body>  
+    <h1>Fizika Ma`ruza</h1>  
+    <form id="testForm"></form>  
+    <button type="button" onclick="calculateScore()">Natijani Hisoblash
+        
+    </button>  
+    
+    <h2 id="result"></h2>  
+    <div id="detailedResult"></div>  
+
+    <script>  
+
+
+
+    
+
+
+        
+        const testData = {  
+            "questions": [
+            {  
+    question:"Vakuumda magnit maydoni qanday shaklda mavjud bo`lishi mumkin?",
+    answers: {  
+        a: "Yengil bo`shliq",  
+        b: "Izotropik",
+        c:"Tahlil qilinmaydiganm",
+        d:"Berilgan nuqtada"  
+    },  
+    correct: "d"  
+},  
+{  
+    question:"Vakuumda magnit maydoni kuchini o`lchash birligi nima?",
+    answers: {  
+        a: "Asl",  
+        b: "Tesla",
+        c:"Volt",
+        d:"Nyuton"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Vakuumda magnit maydoni kuchining zarbasi qanday?",
+    answers: {  
+        a: "F=q(vB)",  
+        b: "F=ma",
+        c:"F=mv",
+        d:"F=eE"  
+    },  
+    correct: "a"  
+},  
+{  
+    question:"Vakuumda magnit maydoni nima bilan tavsiflanadi?",
+    answers: {  
+        a: "sifat",  
+        b: "qatlam",
+        c:"yuza",
+        d:"vektor"  
+    },  
+    correct: "d"  
+},  
+{  
+    question:"Magnus effekti qaysi harakatda ko`rinadi?",
+    answers: {  
+        a: "tormozlanish",  
+        b: "tezlik oshishi bilan",
+        c:"o`ralar aylanishi",
+        d:"Qattiq material"  
+    },  
+    correct: "c"  
+},  
+{  
+    question:"Maskvell tenglamalari qaysi fizik hodisalarni tavsiflaydi?",
+    answers: {  
+        a: "Harorat",  
+        b: "Vakuumda magnit maydon",
+        c:"Elektromagnit maydon",
+        d:"Statik yuk"  
+    },  
+    correct: "c"  
+},  
+{  
+    question:"Elektromagnit maydonni tavsiflash uchun qaysi tenglama asosiy?",
+    answers: {  
+        a: "F=ma",  
+        b: "^E=p/E0",
+        c:"F=q(E+vB)",
+        d:"^B=0"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Maskvell tenglamasida B maydoni qanday o`lchanadi?",
+    answers: {  
+        a: "Volt",  
+        b: "Tesla",
+        c: "Amper",
+        d:"Farad"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Maskvell tenglamasida E nima?",
+    answers: {  
+        a: "Gipertexnika",  
+        b: "Statik maydon",
+        c:"elektr zaryad",
+        d:"suyuqliklar"  
+    },  
+    correct: "c"  
+},  
+{  
+    question:"Maskvell tenglamalarini dastlab fang akiritgan olim kim?",
+    answers: {  
+        a: "Eynshteyn",  
+        b: "Maskvell",
+        c:"Faradey",
+        d:"Nikola Tesla"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Elektromagnit induksiyasini kim yaratgan?",
+    answers: {  
+        a: "Nikola Tesla",  
+        b: "Michael Faradey",
+        c:"Maskvell",
+        d:"Heinrich Hertz"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Induksiya qanday o`lchanadi?",
+    answers: {  
+        a: "F=ma",  
+        b: "EMF=-dF/dt",
+        c:"V=IR",
+        d:"E=mv2"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Qanday hodisalar magnit induksiyaga misol bo`la oladi?",
+    answers: {  
+        a: "dinamika",  
+        b: "magnit o`zgarishi",
+        c:"statik elektr",
+        d:"termodinamika"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Elektromagnit induksiya jarayonida qanday energiya o`tadi?",
+    answers: {  
+        a: "harorat",  
+        b: "kinetik energiya",
+        c:"magnit",
+        d:"elektr"  
+    },  
+    correct: "d"  
+},  
+{  
+    question:"Elektromagnit induksiya qaysi qurilmalarda keng qo`llaniladi?",
+    answers: {  
+        a: "Kromatograf",  
+        b: "generator",
+        c:"termometr",
+        d:"barometr"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Qaysi modda diamagnit?",
+    answers: {  
+        a: "Temir(Fe)",  
+        b: "Molibden(Mb)",
+        c:"Oltingugurt(S)",
+        d:"Kobalt(Cb)"  
+    },  
+    correct: "c"  
+},  
+{  
+    question:"Ferromagnetik moddalar qaysilar?",
+    answers: {  
+        a: "Aluminiy,temir",  
+        b: "temir,nikel",
+        c:"suyuq gaz, temir",
+        d:"oltin kumush"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Qaysi modda paramagnetik?",
+    answers: {  
+        a: "kumush",  
+        b: "Temir",
+        c:"Oltin",
+        d:"Mangan"  
+    },  
+    correct: "d"  
+},  
+{  
+    question:"Qaysi magnit xususiyatlar energiya sarfini kamaytiradi?",
+    answers: {  
+        a: "ferromagnetik",  
+        b: "paramagnetik",
+        c:"diamagnetik",
+        d:"kobalt"  
+    },  
+    correct: "c"  
+},  
+{  
+    question:"Magnetik xususiyatlarini o`zgarishi juda kam bo`lgan magnit turi qaysi?",
+    answers: {  
+        a: "paramagnetik",  
+        b: "ferromagnetik",
+        c:"diamagnetik",
+        d:"antiferro"  
+    },  
+    correct: "c"  
+},  
+{  
+    question:"Elektromagnit to`lqin tezligi qancha?",
+    answers: {  
+        a: "300000km/s",  
+        b: "150000km/s",
+        c:"1000km/s",
+        d:"2000km/s"  
+    },  
+    correct: "a"  
+},  
+{  
+    question:"Elektromagnit to`lqinlar nima?",
+    answers: {  
+        a: "faqat elektr",  
+        b: "magnit maydonlar",
+        c:"elektr,magnit",
+        d:"infratovush"  
+    },  
+    correct: "c"  
+},  
+{  
+    question:"Elektromagnit tolqinlar nimalarni korsatadi?",
+    answers: {  
+        a: "Zarrachalar",  
+        b: "Har qanday modda",
+        c:"Ta`sirli energiya",
+        d:"hech nimani"  
+    },  
+    correct: "c"  
+},  
+{  
+    question:"Infraqizil to`lqinlar nima uchun ishlatiladi?",
+    answers: {  
+        a: "Elektr kuchlanishni",  
+        b: "Isitish va IR kamera ",
+        c:"Tovushni o`lchash",
+        d:"Havo sifatini"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Elektromagnit dalgalarda energiya qanday uzatiladi?",
+    answers: {  
+        a: "Tarqatish yoli bilan",  
+        b: "Tezlik orqali",
+        c:"Jarayonni uzatish orqali",
+        d:"Harakat orqali"  
+    },  
+    correct: "d"  
+},  
+{  
+    question:"O`zgaruvchan tokning asosiy chastotasi qanday (Hz)",
+    answers: {  
+        a: "25Hz",  
+        b: "50Hz , 60Hz",
+        c:"50Hz",
+        d:"75Hz"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"O`zgaruvchan tokli qanday tezliklarda ishlatish mumkin?",
+    answers: {  
+        a: "10km/s",  
+        b: "300000km/s",
+        c:"30000km/s",
+        d:"3000km/s"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"O`zgaruvchan tokni o`lchovchi asbob qaysi?",
+    answers: {  
+        a: "Anemometr",  
+        b: "Barometr",
+        c:"Termometr",
+        d:"Voltmetr"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Chastota birligi qanday?",
+    answers: {  
+        a: "Hertz",  
+        b: "Paskal",
+        c:"Nyuton",
+        d:"Tesla"  
+    },  
+    correct: "a"  
+},  
+{  
+    question:"O`zgaruvchan tokni qanday elementlar tomonidan yasash mumkin?",
+    answers: {  
+        a: "Transformator",  
+        b: "Reostat",
+        c:"Relelar ",
+        d:"Raqamli o`lchov"  
+    },  
+    correct: "a"  
+},  
+{  
+    question:"Yorug`lik difraksiyasi nima?",
+    answers: {  
+        a: "Ozgarishi",  
+        b: "Tosiqdan otishi",
+        c:"Yoruglikni sochish",
+        d:"Yoruglik kopayishi"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Qaysi apparat difraksiyani korsatadi?",
+    answers: {  
+        a: "Mikroskop",  
+        b: "Difraksion tor",
+        c:"Ajratish",
+        d:"Televizor"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Difraksiya qanday jarayon?",
+    answers: {  
+        a: "Texnik",  
+        b: "Fizikaviy",
+        c:"Kimyoviy",
+        d:"Biologik"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Qaysi muhitda difraksiya sodir boladi?",
+    answers: {  
+        a: "faqat gazlarda",  
+        b: "har qanday muhitda",
+        c:"suyuqliklarda",
+        d:"qattiq moddalarda"  
+    },  
+    correct: "b"  
+},  
+{  
+    question:"Difraksiya qanday nazariya bilan izohlanadi?",
+    answers: {  
+        a: "Tolqin",  
+        b: "Temir",
+        c:"Ozgaruvchan dalga nazariyasi",
+        d:"statik nazariya"  
+    },  
+    correct: "a"  
+},  
+]
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            let selectedQuestions = []; // Tanlangan savollarni saqlash uchun o'zgaruvchi  
+
+// Tasodifiy 25 ta savolni tanlash  
+function getRandomQuestions(numQuestions) {  
+    const shuffledQuestions = testData.questions.sort(() => Math.random() - 0.5);  
+    return shuffledQuestions.slice(0, numQuestions);  
+}  
+
+// Sahifa yuklanayotganda savollarni ko'rsatish  
+window.onload = function () {  
+    const form = document.getElementById("testForm");  
+    selectedQuestions = getRandomQuestions(25); // Tanlangan savollarni saqlaymiz  
+
+    selectedQuestions.forEach((item, index) => {  
+        const div = document.createElement("div");  
+        div.classList.add("question");  
+        div.innerHTML = `<label>${index + 1}. ${item.question}</label>`; // Raqam qo'shish  
+        
+        // Har bir savolning javob variantlarini qo'shish  
+        for (const option in item.answers) {  
+            div.innerHTML += `<label class="answer"><input type="radio" name="question${index}" value="${option}"> ${item.answers[option]}</label>`;  
+        }  
+        form.appendChild(div);  
+    });  
+};  
+
+
+
+// Natijani hisoblash va ko'rsatish  
+function calculateScore() {  
+    let totalCorrect = 0;  
+    let detailedResults = [];  
+    const formData = new FormData(document.getElementById('testForm'));  
+
+    selectedQuestions.forEach((item, index) => {  
+        const selected = formData.get(`question${index}`);  
+        if (selected === item.correct) {  
+            totalCorrect++;  
+            detailedResults.push(`Savol ${index + 1}: To'g'ri`);  
+        } else {  
+            detailedResults.push(`Savol ${index + 1}: Noto'g'ri (To'g'ri javob: ${item.answers[item.correct]})`);  
+        }  
+    });  
+
+    document.getElementById('result').innerText = `To'g'ri javoblar: ${totalCorrect} ta`;  
+    document.getElementById('detailedResult').innerHTML = detailedResults.join('<br>');  
+}  
+</script>  
+</body>  
+</html>
